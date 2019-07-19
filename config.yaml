@@ -11,7 +11,7 @@ ref_fa: "/n/regal/informatics_public/reference_genome_by_tommy/ucsc/mm9/mm9.fa"
 macs2_g: mm
 macs2_pvalue: 1e-5
 # other macs2 arguments
-macs2_args: --keep-dup all
+macs2_args: -f BAM
 
 Genrich_args: "-r -p 0.05 -a 200 "
 

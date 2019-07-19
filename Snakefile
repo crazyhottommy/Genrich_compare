@@ -282,7 +282,7 @@ if CONTROL:
             """
            ## for macs2, when nomodel is set, --extsize is default to 200bp, this is the same as 2 * shift-size in macs14.
             macs2 callpeak -t {input.case} \
-                -c {input.control} --keep-dup all -f BAM -g {config[macs2_g]} \
+                -c {input.control} -g {config[macs2_g]} \
                 --outdir 09peak_macs2 -n {params.name} -p {config[macs2_pvalue]} {params.custom} &> {log}
             """
 else:
@@ -299,7 +299,7 @@ else:
             """
            ## for macs2, when nomodel is set, --extsize is default to 200bp, this is the same as 2 * shift-size in macs14.
             macs2 callpeak -t {input.case} \
-                -f BAM -g {config[macs2_g]} \
+                -g {config[macs2_g]} \
                 --outdir 09peak_macs2 -n {params.name} -p {config[macs2_pvalue]} {params.custom} &> {log}
             """
 
