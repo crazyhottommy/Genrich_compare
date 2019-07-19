@@ -1,0 +1,20 @@
+from_fastq: True
+paired_end: True
+# >70bp long, <70bp false
+long_reads: True
+
+# what's the control for IP
+control: 'Input'
+
+ref_fa: "/n/regal/informatics_public/reference_genome_by_tommy/ucsc/mm9/mm9.fa"
+
+macs2_g: mm
+macs2_pvalue: 1e-5
+# other macs2 arguments
+macs2_args: --keep-dup all
+
+Genrich_args: "-r -p 0.05 -a 200 "
+
+#number of reads downsample to, I set to 50 million, if reads number smaller than
+## 50 million, downsample will keep the orignal reads
+target_reads: 50000000
