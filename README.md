@@ -83,3 +83,5 @@ snakemake -j 24
 ### To do
 
 - [ ] Adatpor trimming
+- [ ] Genrich with replicates https://github.com/jsh58/Genrich#multiple-replicates
+- [ ] IDR framework https://github.com/kundajelab/idr compare it with Genrich. IDR is fast.
