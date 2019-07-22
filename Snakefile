@@ -41,7 +41,6 @@ for case in CASES:
     sample = "_".join(case.split("_")[0:-1])
     if CONTROL:
         control = sample + "_" + CONTROL
-        ALL_inputSubtract_BIGWIG = []
         if control in CONTROLS:
             ALL_MACS_PEAKS.append("09peak_macs2/{}_vs_{}_macs2_peaks.xls".format(case, control))
             ALL_GENRICH_PEAKS.append("09peak_Genrich/{}_vs_{}_Genrich_peaks.xls".format(case, control))
@@ -64,6 +63,9 @@ TARGETS.extend(ALL_DOWNSAMPLE_BAM)
 TARGETS.extend(ALL_INDEX)
 TARGETS.extend(ALL_MACS_PEAKS)
 TARGETS.extend(ALL_GENRICH_PEAKS)
+
+rule all:
+    input: TARGETS
 
 ## get a list of fastq.gz files for the same mark, same sample
 def get_input_files(wildcards):
@@ -306,7 +308,7 @@ else:
 if CONTROL:
     rule call_peaks_Genrich:
         input: control = "04aln_downsample/{control}-downsample.sorted.bam", case="04aln_downsample/{case}-downsample.sorted.bam"
-        output: bed = "09peak_macs2/{case}_vs_{control}_Genrich_peaks.bed"
+        output: bed = "09peak_Genrich/{case}_vs_{control}_Genrich_peaks.bed"
         log: "00log/{case}_vs_{control}_call_peaks_Genrich.log"
         params:
             name = "{case}_vs_{control}_Genrich",
@@ -321,7 +323,7 @@ if CONTROL:
 else:
     rule call_peaks_Genrich:
         input: case = "04aln_downsample/{case}-downsample.sorted.bam"
-        output: bed = "09peak_macs2/{case}_Genrich_peaks.bed"
+        output: bed = "09peak_Genrich/{case}_Genrich_peaks.bed"
         log: "00log/{case}_call_peaks_Genrich.log"
         params:
             name = "{case}_Genrich",

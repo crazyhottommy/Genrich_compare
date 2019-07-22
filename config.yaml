@@ -18,3 +18,7 @@ Genrich_args: "-r -p 0.05 -a 200 "
 #number of reads downsample to, I set to 50 million, if reads number smaller than
 ## 50 million, downsample will keep the orignal reads
 target_reads: 50000000
+
+SAMPLES_JSON: './samples.json'
+
+CLUSTER_JSON: './cluster.json'

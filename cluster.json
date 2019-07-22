@@ -1,0 +1,73 @@
+{
+    "__default__" :
+    {
+        "time" : "00:40:00",
+        "N" : 1,
+        "n": 1,
+        "mem": 4000,
+        "p" : "shared",
+        "name" : "{rule}.{wildcards}",
+        "output": "sbatch_log/{rule}.{wildcards}.out",
+        "error": "sbatch_log/{rule}.{wildcards}.err"
+    },
+    "merge_fastqs" :
+    {
+        "time" : "01:00:00",
+        "n" : 1
+    },
+    "fastqc":
+    {
+        "time" : "01:00:00",
+        "n" : 1
+    },
+    "align":
+    {
+        "time" : "05:00:00",
+        "mem": 32768,
+        "n" : 5
+    },
+    "sort_bam":
+    {
+        "time" : "01:00:00",
+        "mem": 16384,
+        "n" : 5
+    },
+    "index_bam":
+    {
+        "time" : "00:20:00"
+    },
+    "flagstat_bam":
+    {
+        "time" : "00:30:00"
+    },
+    "down_sample":
+    {
+        "time" : "01:00:00",
+        "n" : 5,
+        "mem": 16384
+    },
+    "call_peaks_macs1":
+    {
+        "time" : "02:30:00"
+    },
+    "call_peaks_macs2":
+    {   
+        "time" : "02:00:00"
+    },
+    "make_bigwigs":
+    {
+        "time" : "03:00:00",
+        "mem": 16384,
+        "n" : 5
+    },
+    "multiQC" :
+    {
+        "time" : "00:30:00"
+    },
+    "call_peaks_Genrich":
+    {
+        "time": "1:00:00",
+        "n" : 1,
+        "mem": 20000
+    }
+}
