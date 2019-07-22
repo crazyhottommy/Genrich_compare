@@ -6,6 +6,26 @@ snakemake workflow comparing Genrich and MACS2
 
 ### Dependencies
 
+* [bwa/0.7.15](https://github.com/lh3/bwa) for aligning the reads.
+
+* [Genrich](https://github.com/jsh58/Genrich)
+
+git clone the repo on July 22th
+
+```bash
+git clone https://github.com/jsh58/Genrich
+cd Genrich
+make
+
+```
+
+* [MACS2](https://github.com/taoliu/MACS)
+
+macs2 2.1.2
+
+```bash
+conda install macs2
+```
 ### How to run it
 
 ```bash
