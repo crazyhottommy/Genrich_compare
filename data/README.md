@@ -68,4 +68,17 @@ this is ATACseq data, there is no control
 set  "control: False"
 
 
+### download reference genome 
+
+```bash
+wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
+gunzip hg38.fa.gz
+
+## get a bed file for streches of Ns in the genome and provide it to Genrich -E
+
+python ~/apps/Genrich/findNs.py hg38.fa hg38_Ns.bed
+
+## make a bwa index
+bwa index hg39.fa 
+```
 
