@@ -13,6 +13,7 @@ macs2_pvalue: 1e-5
 # other macs2 arguments
 macs2_args: -f BAM
 
+Genrich_path: "~/apps/Genrich/Genrich"
 Genrich_args: "-r -p 0.05 -a 200 "
 
 #number of reads downsample to, I set to 50 million, if reads number smaller than

@@ -283,6 +283,7 @@ if CONTROL:
         shell:
             """
            ## for macs2, when nomodel is set, --extsize is default to 200bp, this is the same as 2 * shift-size in macs14.
+            source activate macs2
             macs2 callpeak -t {input.case} \
                 -c {input.control} -g {config[macs2_g]} \
                 --outdir 09peak_macs2 -n {params.name} -p {config[macs2_pvalue]} {params.custom} &> {log}
@@ -300,6 +301,7 @@ else:
         shell:
             """
            ## for macs2, when nomodel is set, --extsize is default to 200bp, this is the same as 2 * shift-size in macs14.
+            source activate macs2
             macs2 callpeak -t {input.case} \
                 -g {config[macs2_g]} \
                 --outdir 09peak_macs2 -n {params.name} -p {config[macs2_pvalue]} {params.custom} &> {log}
@@ -317,7 +319,7 @@ if CONTROL:
         message: "call_peaks Genrich {input}: {threads} threads"
         shell:
             """
-            Genrich -t {input.case} \
+            config[Genrich_path] -t {input.case} \
             -c {input.control} {params.custom} &> {log}
             """
 else:
@@ -332,7 +334,7 @@ else:
         message: "call_peaks Genrich {input}: {threads} threads"
         shell:
             """
-            Genrich -t {input.case} \
+            config[Genrich_path] -t {input.case} \
             {params.custom} &> {log} &> {log}
             """
 
