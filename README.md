@@ -82,4 +82,4 @@ snakemake -j 24
 
 ### To do
 
-- [] Adatpor trimming
+- [ ] Adatpor trimming
