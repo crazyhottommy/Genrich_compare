@@ -83,5 +83,7 @@ snakemake -j 24
 ### To do
 
 - [ ] Adatpor trimming
+- [ ] Add benchmark directive for logging time and memory usage.
 - [ ] Genrich with replicates https://github.com/jsh58/Genrich#multiple-replicates
 - [ ] IDR framework https://github.com/kundajelab/idr compare it with Genrich. IDR is fast.
+- [ ] conda env and docker container 
