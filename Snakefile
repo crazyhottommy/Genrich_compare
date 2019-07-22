@@ -172,13 +172,13 @@ if config["from_fastq"] and config["paired_end"]:
             else:
                 shell(
                     r"""
-                    bwa aln -t 5 {config[ref_fa]} {input[0]} 2> {log.bwa} > 0aln/{wildcards.sample}_R1.sai
-                    bwa aln -t 5 {config[ref_fa]} {input[1]} 2>> {log.bwa} > 01aln/{wildcards.sample}_R2.sai
+                    bwa aln -t 5 {config[ref_fa]} {input[0]} 2> {log.bwa} > 03aln/{wildcards.sample}_R1.sai
+                    bwa aln -t 5 {config[ref_fa]} {input[1]} 2>> {log.bwa} > 03aln/{wildcards.sample}_R2.sai
                     bwa sampe -r '{params.rg}' {config[ref_fa]} 01aln/{wildcards.sample}_R1.sai 01aln/{wildcards.sample}_R2.sai {input[0]} {input[1]} 2>> {log.bwa} \
                     | samblaster 2> {log.markdup} \
                     | samtools view -Sb -F 4 - \
                     | samtools sort -m 2G -@ 5 -T {output[0]}.tmp -o {output[0]}
-                    rm 01aln/{wildcards.sample}_R1.sai 01aln/{wildcards.sample}_R2.sai
+                    rm 03aln/{wildcards.sample}_R1.sai 03aln/{wildcards.sample}_R2.sai
                     samtools index {output[0]}
                     """)
 
