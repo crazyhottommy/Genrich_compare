@@ -246,16 +246,17 @@ rule down_sample:
             line = f.readlines()[4]
             match_number = re.match(r'(\d.+) \+.+', line)
             total_reads = int(match_number.group(1))
-
-        target_reads = config["target_reads"] # 15million reads  by default, set up in the config.yaml file
-        if total_reads > target_reads:
-            down_rate = target_reads/total_reads
+        if config["downsample"]:
+            target_reads = config["target_reads"] # 15million reads  by default, set up in the config.yaml file
+            if total_reads > target_reads:
+                down_rate = target_reads/total_reads
+            else:
+                down_rate = 1
+            shell("sambamba view -f bam -t 5 --subsampling-seed=3 -s {rate} {inbam} | samtools sort -m 2G -@ 5 -T {outbam}.tmp > {outbam} 2> {log}".format(rate = down_rate, inbam = input[0], outbam = output[0], log = log))
+            shell("samtools index {outbam}".format(outbam = output[0]))
         else:
-            down_rate = 1
-
-        shell("sambamba view -f bam -t 5 --subsampling-seed=3 -s {rate} {inbam} | samtools sort -m 2G -@ 5 -T {outbam}.tmp > {outbam} 2> {log}".format(rate = down_rate, inbam = input[0], outbam = output[0], log = log))
-
-        shell("samtools index {outbam}".format(outbam = output[0]))
+            shell("ln -s {inbam} {outbam}".format(inbam = input[0], outbam = output[0]))
+            shell("ln -s {inbai} {outbai}".format(inbai = input[1], outbai = output[1]))
 
 rule make_bigwigs:
     input : "04aln_downsample/{sample}-downsample.sorted.bam", "04aln_downsample/{sample}-downsample.sorted.bam.bai"
@@ -319,8 +320,8 @@ if CONTROL:
         message: "call_peaks Genrich {input}: {threads} threads"
         shell:
             """
-            config[Genrich_path] -t {input.case} \
-            -c {input.control} {params.custom} &> {log}
+            {config[Genrich_path]} -t {input.case} \
+            -c {input.control} {params.custom} -o {output} &> {log}
             """
 else:
     rule call_peaks_Genrich:
@@ -334,8 +335,8 @@ else:
         message: "call_peaks Genrich {input}: {threads} threads"
         shell:
             """
-            config[Genrich_path] -t {input.case} \
-            {params.custom} &> {log} &> {log}
+            {config[Genrich_path]} -t {input.case} \
+            {params.custom} -o {output} &> {log} &> {log}
             """
 
 
