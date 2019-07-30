@@ -6,7 +6,13 @@ long_reads: True
 # what's the control for IP
 control: 'Input'
 
-ref_fa: "/n/regal/informatics_public/reference_genome_by_tommy/ucsc/mm9/mm9.fa"
+
+# path to reference genome fasta file where the bwa index has been done 
+# mouse
+#ref_fa: "/n/holylfs/INTERNAL_REPOS/INFORMATICS/reference_genome_by_tommy/ucsc/mm9/mm9.fa"
+
+#human
+ref_fa: "/n/holylfs/INTERNAL_REPOS/INFORMATICS/reference_genome_by_tommy/ucsc/hg38/hg38.fa"
 
 macs2_g: mm
 macs2_pvalue: 1e-5
@@ -14,7 +20,8 @@ macs2_pvalue: 1e-5
 macs2_args: -f BAM
 
 Genrich_path: "~/apps/Genrich/Genrich"
-Genrich_args: "-r -p 0.05 -a 200 "
+# excluded regions -E: python ~/apps/Genrich/findNs.py hg38.fa hg38_Ns.bed
+Genrich_args: "-r -p 0.05 -a 200 -E /n/holylfs/INTERNAL_REPOS/INFORMATICS/reference_genome_by_tommy/ucsc/hg38/hg38_Ns.bed"
 
 #number of reads downsample to, I set to 50 million, if reads number smaller than
 ## 50 million, downsample will keep the orignal reads.

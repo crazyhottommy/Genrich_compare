@@ -131,7 +131,9 @@ macs2_args: -f BAM
 Genrich_args: "-r -p 0.05 -a 200 "
 
 #number of reads downsample to, I set to 50 million, if reads number smaller than
-## 50 million, downsample will keep the orignal reads
+## 50 million, downsample will keep the orignal reads.
+## if downsample set to False, no downsample will be done, symbolic link will be used
+downsample: False
 target_reads: 50000000
 ```
 
